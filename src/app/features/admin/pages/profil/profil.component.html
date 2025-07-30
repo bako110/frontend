@@ -1,0 +1,30 @@
+<div class="profile-container">
+  <h2 class="title">PROFIL</h2>
+
+  <p>Bienvenue, <strong>{{ nomConnecte }} {{ prenomConnecte }}</strong></p>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <!-- Nom & Prénom affichés en statique, pas d'input -->
+    <div class="form-group">
+      <label>Nom :</label>
+      <p>{{ nomConnecte }}</p>
+    </div>
+
+    <div class="form-group">
+      <label>Prénom :</label>
+      <p>{{ prenomConnecte }}</p>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" placeholder="Votre email" />
+    </div>
+
+    <div class="form-group">
+      <label for="photo">Photo</label>
+      <input type="file" id="photo" (change)="onFileSelected($event)" />
+    </div>
+
+    <button type="submit" class="btn-save" [disabled]="!profileForm.valid">Enregistrer</button>
+  </form>
+</div>

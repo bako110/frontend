@@ -1,0 +1,123 @@
+<div class="container">
+  <h1><span class="icon">📅</span> Gestion des Rendez-vous Patients</h1>
+
+  <!-- Section de recherche -->
+  <div class="search-section">
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="recherche"
+        (keydown.enter)="filtrer()"
+        placeholder="Rechercher par nom, prenom, ID ou le statut...."
+        class="search-input"
+      />
+      <button title="Rechercher" class="search-button" (click)="filtrer()">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Tableau des rendez-vous -->
+  <h1>Liste des Rendez-vous</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Patient</th>
+        <th>Date/Heure</th>
+        <th>Motif</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="filteredAppointments.length === 0">
+        <td colspan="6" class="no-appointments">Aucun rendez-vous trouvé</td>
+      </tr>
+      <tr *ngFor="let appointment of filteredAppointments">
+        <td>{{ appointment.patient.prenom }} {{ appointment.patient.nom }}</td>
+        <td>{{ formatDate(appointment.date) }} à {{ appointment.time }}</td>
+        <td>{{ appointment.motif }}</td>
+        <td [ngClass]="getStatusClass(appointment.statut)">
+          {{ getStatusLabel(appointment.statut) }}
+        </td>
+        <td>
+          <button (click)="viewAppointmentDetails(appointment)" class="btn-secondary">
+            <span class="icon">👁️</span> Voir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal des détails -->
+<div class="modal" [style.display]="selectedAppointment ? 'block' : 'none'">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h1><span class="icon">📄</span> Détails du rendez-vous</h1>
+
+    <div class="appointment-details" *ngIf="selectedAppointment">
+      <div class="detail-row">
+        <div class="detail-label">Patient :</div>
+        <div class="detail-value">{{ selectedAppointment.patient.prenom }} {{ selectedAppointment.patient.nom }}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Contact :</div>
+        <div class="detail-value">{{ selectedAppointment.patient.telephone || 'Téléphone non fourni' }} || {{ selectedAppointment.patient.email}} </div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Date/Heure :</div>
+        <div class="detail-value">{{ formatDate(selectedAppointment.date) }} à {{ selectedAppointment.time }}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Motif :</div>
+        <div class="detail-value">{{ selectedAppointment.motif }}</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Statut :</div>
+        <div class="detail-value">{{ getStatusLabel(selectedAppointment.statut) }}</div>
+      </div>
+    </div>
+
+    <div class="action-buttons" *ngIf="selectedAppointment">
+      <button type="button" *ngIf="selectedAppointment.statut !== 'annulé'" class="btn-danger"
+        (click)="ouvrirAnnulationModal(selectedAppointment._id)">❌ Annuler
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal d'annulation -->
+<div class="modal fade" id="annulationModal" tabindex="-1" aria-labelledby="annulationModalLabel" aria-hidden="true" data-bs-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border border-danger">
+      <div class="modal-header bg-white border-bottom-0">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-exclamation-triangle-fill text-danger fs-3 me-2"></i>
+          <h5 class="modal-title fw-bold" id="annulationModalLabel">Confirmation d'annulation</h5>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>Ce rendez-vous vous est confirmé. Êtes-vous sûr de vouloir l'annuler ? Cette action notifiera le patient et le médecin.</p>
+
+        <div class="mb-3">
+          <label for="motif" class="form-label fw-bold text-primary">Motif d’annulation</label>
+          <select class="form-select" [(ngModel)]="motifSelectionne">
+            <option value="">-- Choisissez un motif --</option>
+            <option *ngFor="let motif of motifs" [value]="motif">{{ motif }}</option>
+            <option value="autre">Autre motif</option>
+          </select>
+        </div>
+
+        <div *ngIf="motifSelectionne === 'autre'" class="mb-3">
+          <input type="text" class="form-control" [(ngModel)]="autreMotif" placeholder="Précisez le motif">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button class="btn btn-danger" (click)="confirmerAnnulation()">Confirmer l'annulation</button>
+      </div>
+    </div>
+  </div>
+</div>

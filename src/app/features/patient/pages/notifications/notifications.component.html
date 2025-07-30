@@ -1,0 +1,44 @@
+<div class="pt-5 mt-5 form-container">
+  <!-- Contenu principal -->
+    <!-- Contenu principal sous le header -->
+    <main class="main">
+      <!-- Titre principal -->
+      <h1 class="title-main">Notifications</h1>
+
+      <!-- Bloc de notifications -->
+      <div class="notifications-box">
+        <!-- Message s’il n’y a pas de notifications -->
+        <div *ngIf="notifications.length === 0" class="no-notif">
+          <p class="alerte">Aucune notification pour le moment.</p>
+        </div>
+
+        <!-- Groupes de notifications par type -->
+        <div *ngFor="let groupe of notificationsGroupes" class="notif-card mb-4"
+             [ngClass]="{
+               'rappel': groupe.type === 'rappel',
+               'echec': groupe.type === 'annulation'
+             }"
+        >
+          <!-- Titre du groupe -->
+          <div class="d-flex align-items-center mb-3">
+            <i [class]="getIconClass(groupe.type)" class="me-2 fs-4"></i>
+            <h3 class="mb-0">{{ getTitre(groupe.type) }}</h3>
+          </div>
+
+          <!-- Notifications individuelles -->
+          <div *ngFor="let notif of groupe.notifications; let i = index">
+            <!-- Message principal -->
+            <p class="mb-1">{{ getMessage(notif) }}</p>
+
+            <!-- Date -->
+            <small class="text-muted">{{ formatDate(notif.dateNotification) }}</small>
+
+            <!-- Séparateur (sauf pour la dernière) -->
+            <hr *ngIf="i < groupe.notifications.length - 1" />
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+

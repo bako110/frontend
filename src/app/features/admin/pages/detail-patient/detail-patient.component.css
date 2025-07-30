@@ -1,0 +1,64 @@
+.card {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+  color: #007bff; /* Bleu Bootstrap */
+  margin-top: 1.5rem;
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+ul {
+  padding-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+ul li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-top: -0.5rem;
+}
+
+.spinner-border {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+@media (max-width: 576px) {
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .btn-close {
+    font-size: 1.25rem;
+  }
+}

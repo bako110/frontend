@@ -1,0 +1,257 @@
+<div
+  class="page-container"
+>
+  <div class="main-content">
+    <div class="container">
+      <div class="form-container">
+        <div class="profile-card">
+          <!-- Photo de profil -->
+          <div class="photo-container">
+            <div class="photo-wrapper">
+              <img
+                *ngIf="previewUrl"
+                [src]="previewUrl"
+                alt="Photo de profil"
+                class="profile-photo"
+              />
+              <div *ngIf="!previewUrl" class="photo-placeholder">
+                <i class="bi bi-person-circle"></i>
+              </div>
+              <div class="photo-overlay">
+                <i class="bi bi-camera"></i>
+              </div>
+            </div>
+
+            <button class="btn-change-photo" (click)="triggerFileInput()">
+              Changer la photo
+            </button>
+
+          
+            <input
+              type="file"
+              #fileInput
+              (change)="onFileSelected($event)"
+              accept="image/*"
+              hidden
+            />
+          </div>
+
+          <!-- Formulaire principal -->
+          <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
+            <!-- Infos personnelles -->
+            <h3 class="section-title">Informations personnelles</h3>
+            <hr />
+            <div class="form-row four-cols">
+              <!-- Nom -->
+              <div class="form-group quarter-width">
+                <label>Nom <span class="required-star">*</span></label>
+                <div class="input-wrapper">
+                  <input
+                    name="nom"
+                    type="text"
+                    [(ngModel)]="profile.nom"
+                    #nom="ngModel"
+                    required
+                    minlength="2"
+                  />
+                  <i class="bi bi-person input-icon"></i>
+                </div>
+                <div class="field-error" *ngIf="nom.invalid && nom.touched">
+                  <small *ngIf="nom.errors?.['required']">Nom requis</small>
+                  <small *ngIf="nom.errors?.['minlength']">
+                    Minimum 2 caractères
+                  </small>
+                </div>
+              </div>
+
+              <!-- Prénom -->
+              <div class="form-group quarter-width">
+                <label>Prénom <span class="required-star">*</span></label>
+                <div class="input-wrapper">
+                  <input
+                    name="prenom"
+                    type="text"
+                    [(ngModel)]="profile.prenom"
+                    #prenom="ngModel"
+                    required
+                    minlength="2"
+                  />
+                  <i class="bi bi-person input-icon"></i>
+                </div>
+                <div class="field-error" *ngIf="prenom.invalid && prenom.touched">
+                  <small *ngIf="prenom.errors?.['required']">Prénom requis</small>
+                  <small *ngIf="prenom.errors?.['minlength']">
+                    Minimum 2 caractères
+                  </small>
+                </div>
+              </div>
+
+              <!-- Sexe -->
+              <div class="form-group quarter-width">
+                <label>Sexe <span class="required-star">*</span></label>
+                <div class="select-wrapper">
+                  <select
+                    name="sex"
+                    [(ngModel)]="profile.sex"
+                    #sex="ngModel"
+                    required
+                  >
+                    <option value="">Sélectionner</option>
+                    <option value="masculin">Masculin</option>
+                    <option value="féminin">Féminin</option>
+                  </select>
+                  <i class="bi bi-chevron-down select-icon"></i>
+                </div>
+                <div class="field-error" *ngIf="sex.invalid && sex.touched">
+                  <small *ngIf="sex.errors?.['required']">Sexe requis</small>
+                </div>
+              </div>
+
+              <!-- Date de naissance -->
+              <div class="form-group quarter-width">
+                <label>Date de naissance <span class="required-star">*</span></label>
+                <div class="input-wrapper">
+                  <input
+                    name="dateNaissance"
+                    type="date"
+                    [(ngModel)]="profile.dateNaissance"
+                    #dateNaissance="ngModel"
+                    required
+                  />
+                  <i class="bi bi-calendar input-icon"></i>
+                </div>
+                <div
+                  class="field-error"
+                  *ngIf="dateNaissance.invalid && dateNaissance.touched"
+                >
+                  <small *ngIf="dateNaissance.errors?.['required']">
+                    Date de naissance requise
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coordonnées -->
+            <h3 class="section-title">Coordonnées</h3>
+            <hr />
+            <div
+              class="form-row three-cols"
+              style="display: flex; gap: 20px; flex-wrap: nowrap"
+            >
+              <div class="form-group third-width" style="flex: 1">
+                <label>Téléphone <span class="required-star">*</span></label>
+                <div class="input-wrapper">
+                  <input
+                    name="telephone"
+                    type="tel"
+                    [(ngModel)]="profile.telephone"
+                    #telephone="ngModel"
+                    required
+                    pattern="^[0-9]{8}$"
+                  />
+                  <i class="bi bi-telephone input-icon"></i>
+                </div>
+                <div class="field-error" *ngIf="telephone.invalid && telephone.touched">
+                  <small *ngIf="telephone.errors?.['required']">
+                    Téléphone requis
+                  </small>
+                  <small *ngIf="telephone.errors?.['pattern']">
+                    Téléphone invalide (8 chiffres requis)
+                  </small>
+                </div>
+              </div>
+
+              <div class="form-group third-width" style="flex: 1">
+                <label>Localité <span class="required-star">*</span></label>
+                <div class="input-wrapper">
+                  <input
+                    name="localite"
+                    type="text"
+                    [(ngModel)]="profile.localite"
+                    #localite="ngModel"
+                    required
+                  />
+                  <i class="bi bi-geo-alt input-icon"></i>
+                </div>
+                <div class="field-error" *ngIf="localite.invalid && localite.touched">
+                  <small *ngIf="localite.errors?.['required']">Localité requise</small>
+                </div>
+              </div>
+
+              <div class="form-group third-width" style="flex: 1">
+                <label>Email <span class="required-star">*</span></label>
+                <div class="input-wrapper">
+                  <input
+                    name="email"
+                    type="email"
+                    [(ngModel)]="profile.email"
+                    #email="ngModel"
+                    required
+                    email
+                  />
+                  <i class="bi bi-envelope input-icon"></i>
+                </div>
+                <div class="field-error" *ngIf="email.invalid && email.touched">
+                  <small *ngIf="email.errors?.['required']">Email requis</small>
+                  <small *ngIf="email.errors?.['email']">Email invalide</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Infos médicales -->
+            <h3 class="section-title">Informations médicales (Optionnel)</h3>
+            <hr />
+            <div class="form-row two-cols">
+              <div class="form-group half-width">
+                <label>Groupe sanguin</label>
+                <div class="select-wrapper">
+                  <select name="groupeSanguin" [(ngModel)]="profile.groupeSanguin">
+                    <option value=""></option>
+                    <option *ngFor="let groupe of ['A+','A−','B+','B−','AB+','AB−','O+','O−']" [value]="groupe">
+                      {{ groupe }}
+                    </option>
+                  </select>
+                  <i class="bi bi-chevron-down select-icon"></i>
+                </div>
+              </div>
+
+              <div class="form-group half-width">
+                <label>Allergies</label>
+                <div class="input-wrapper">
+                  <input name="allergies" type="text" [(ngModel)]="profile.allergies" />
+                  <i class="bi bi-droplet input-icon"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Messages d'alertes-->
+            <div class="form-messages">
+              <p class="success-message" *ngIf="successMessage">
+                {{ successMessage }}
+              </p>
+              <p class="error-message" *ngIf="errorMessages">
+                {{ errorMessages }}
+              </p>
+            </div>
+
+            <!-- Boutons -->
+            <div class="form-buttons">
+              <button type="button" class="btn btn-cancel" (click)="onCancel(profileForm)">
+                Annuler
+              </button>
+
+              <button
+                type="submit"
+                class="btn btn-submit"
+                [disabled]="isSubmitting || profileForm.invalid"
+              >
+                <span *ngIf="!isSubmitting">Enregistrer</span>
+                <span *ngIf="isSubmitting">Enregistrement...</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,371 @@
+/* === Styles de base  === */
+.calendar-container {
+  flex: 1 1 320px;
+  max-width: 700px;
+  min-width: 280px;
+}
+
+h2 {
+  text-align: center;
+  color: #2d82d7;
+  font-size: 26px;
+  white-space: nowrap;
+  position: relative;
+  top: 80px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  background: #468cf5;
+  color: white;
+  font-size: 22px;
+  position: relative;
+  left: -70px;
+  top: 30px;
+  text-align: center;
+  width: 700px;
+  height: 40px;
+}
+
+.body {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  top: 100px;
+}
+
+.calendar-container {
+  flex: 1 1 500px;
+  min-width: 300px;
+}
+
+.slots-container {
+  flex: 1 1 300px;
+  min-width: 280px;
+  height: 588px;
+  position: relative;
+  top: 35px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: inset 0 0 5px rgb(0 0 0 / 0.05);
+}
+
+.slots-container h4 {
+  text-align: center;
+  font-weight: 600;
+  margin-top: 0;
+  color: #34495e;
+}
+
+.slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.slot-btn {
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.slot-btn.selected {
+  background-color: #5399f0;
+  color: white;
+  border-color: #5399f0;
+}
+
+.reserved {
+  background-color: #ccc;
+  color: #666;
+
+}
+
+.disponible {
+  background-color: #19b165;
+  color: #666;
+
+}
+
+.slot-btn:hover {
+  background-color: #5399f0;
+  color: white;
+}
+
+/* Calendrier */
+.cal-month-view .cal-cell {
+  min-height: 40px !important;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 14px;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.cal-day-headers .cal-cell {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.cal-month-view .cal-day-headers .cal-cell {
+  height: 40px;
+  font-weight: bold;
+  font-size: 14px;
+  background: #ecf0f1;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.cal-day-number {
+  font-weight: 600;
+  font-size: 10px;
+}
+
+::ng-deep .cal-month-view .cal-cell.cal-today .cal-day-number {
+  color: rgb(10, 9, 9) !important;
+  font-weight: 800 !important;
+  font-size: 22px;
+}
+
+::ng-deep .cal-month-view .cal-day-headers .cal-cell {
+  background-color: transparent !important;
+  color: #2c3e50;
+  font-weight: bold;
+  border: none;
+}
+
+.day-column button.btn-sm {
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  height: auto;
+}
+
+/* Boutons bas */
+.bottom-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 440px;
+  margin-top: 30px;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.bottom-buttons .btn {
+  min-width: 130px;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 16px;
+}
+
+.btn-primary.white-bg {
+  background-color: white;
+  color: black;
+  border-color: #000000;
+}
+
+.btn-primary.white-bg:hover {
+  background-color: #e6f0ff;
+  color: #0a58ca;
+}
+
+/* Flèche navigation */
+.calendar-header-wrapper {
+  position: relative;
+  width: 700px;
+  margin: 30px auto 20px auto;
+}
+
+.calendar-header-wrapper h3 {
+  background: #468cf5;
+  color: white;
+  font-size: 22px;
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  margin: 0;
+  position: relative;
+  left: 0;
+  top: 0;
+  border-radius: 4px;
+}
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0 10px;
+  z-index: 10;
+}
+
+.nav-left {
+  left: 0;
+}
+
+.nav-right {
+  right: 0;
+}
+
+.nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+/* === RESPONSIVE === */
+
+/* Jusqu’à 1024px */
+@media (max-width: 1024px) {
+  h2 {
+    font-size: 22px;
+    top: 60px;
+  }
+
+  h3 {
+    width: 90%;
+    left: 0;
+    top: 0;
+    font-size: 20px;
+  }
+
+  .calendar-container {
+    max-width: 600px;
+    flex: 1 1 100%;
+    min-width: 280px;
+  }
+
+  .slots-container {
+    flex: 1 1 100%;
+    max-width: 400px;
+    min-width: 280px;
+    height: 500px;
+    top: 10px;
+  }
+
+  .body {
+    top: 80px;
+    gap: 1rem;
+  }
+
+  .calendar-header-wrapper {
+    width: 90%;
+  }
+
+  .bottom-buttons {
+    gap: 200px;
+  }
+}
+
+/* Jusqu’à 768px */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 20px;
+    top: 40px;
+    white-space: normal;
+  }
+
+  h3 {
+    width: 100%;
+    font-size: 18px;
+    left: 0;
+    top: 0;
+  }
+
+  .body {
+    flex-direction: column;
+    top: 60px;
+    gap: 1.5rem;
+  }
+
+  .calendar-container {
+    max-width: 100%;
+    min-width: auto;
+    flex: 1 1 auto;
+  }
+
+  .slots-container {
+    max-width: 100%;
+    min-width: auto;
+    height: auto;
+    top: 0;
+  }
+
+  .bottom-buttons {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .bottom-buttons .btn {
+    min-width: 100%;
+  }
+}
+
+/* Jusqu’à 480px */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 18px;
+    top: 20px;
+    white-space: normal;
+  }
+
+  h3 {
+    font-size: 16px;
+    height: auto;
+    line-height: 1.2;
+    padding: 10px 5px;
+  }
+
+  .body {
+    top: 40px;
+    gap: 1rem;
+  }
+
+  .calendar-container,
+  .slots-container {
+    max-width: 100%;
+    min-width: auto;
+    height: auto;
+    padding: 0 10px;
+  }
+
+  .slot-btn {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  .bottom-buttons {
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .bottom-buttons .btn {
+    min-width: 100%;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .nav-arrow {
+    font-size: 1.5rem;
+    padding: 0 6px;
+  }
+}

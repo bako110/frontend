@@ -1,0 +1,166 @@
+/* ========== SIDEBAR BASE ========== */
+.patient-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: #00a3e0;
+  color: white;
+  padding: 0.5rem 1rem 1rem 1rem;
+  z-index: 1000;
+  transition: width 0.3s ease;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/* Liens */
+.patient-sidebar nav.nav.flex-column a.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  font-size: 1rem;
+  transition: background 0.3s, color 0.3s;
+}
+.patient-sidebar nav.nav.flex-column a.nav-link:hover {
+  background-color: #007AFF;
+  color: #fff;
+}
+.patient-sidebar nav.nav.flex-column a.nav-link.active-link {
+  background-color: #007AFF;
+  color: #fff;
+}
+
+/* Avatar */
+.patient-avatar {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 3px solid white;
+  margin: 20px auto 1rem auto;
+  display: block;
+}
+
+/* Icône stylo positionnée sur l'avatar */
+.edit-icon {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background-color: #007AFF;
+  color: white;
+  font-size: 14px;
+  padding: 6px;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.edit-icon:hover {
+  background-color: #005bb5;
+  transform: scale(1.1);
+}
+
+/* Titre */
+.sidebar-title {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Collapse */
+.patient-sidebar.collapsed {
+  width: 80px;
+}
+.patient-sidebar.collapsed .nav-link span {
+  display: none;
+}
+.patient-sidebar.collapsed .sidebar-title {
+  opacity: 0;
+}
+
+/* Ajustement avatar et stylo en mode collapsed */
+.patient-sidebar.collapsed .patient-avatar {
+  width: 70px;
+  height: 70px;
+}
+.patient-sidebar.collapsed .edit-icon {
+  font-size: 12px;
+  padding: 4px;
+  bottom: 4px;
+  right: 4px;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/*  Tablettes (≤1024px) */
+@media (max-width: 1024px) {
+  .patient-sidebar {
+    width: 200px;
+  }
+  .patient-sidebar.collapsed {
+    width: 70px;
+  }
+  .patient-avatar {
+    width: 80px;
+    height: 80px;
+  }
+  .edit-icon {
+    font-size: 12px;
+    padding: 4px;
+    bottom: 5px;
+    right: 5px;
+  }
+  .sidebar-title {
+    font-size: 1rem;
+  }
+  .nav-link {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+/*  Mobiles (≤768px) */
+@media (max-width: 768px) {
+  .patient-sidebar {
+    position: fixed;
+    width: 70px; /* Mini sidebar par défaut */
+    padding: 0.5rem;
+  }
+  .patient-avatar {
+    width: 50px;
+    height: 50px;
+  }
+  .edit-icon {
+    font-size: 10px;
+    padding: 3px;
+    bottom: 3px;
+    right: 3px;
+  }
+  .sidebar-title {
+    display: none;
+  }
+  .nav-link span {
+    display: none;
+  }
+  .nav-link i {
+    font-size: 1.3rem;
+    margin: 0 auto;
+  }
+}
+
+/* Très petits écrans (≤480px) → Sidebar cachée */
+@media (max-width: 480px) {
+  .patient-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .patient-sidebar.active {
+    transform: translateX(0); /* Affichage si bouton menu cliqué */
+  }
+}

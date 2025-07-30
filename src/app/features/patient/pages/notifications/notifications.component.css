@@ -1,0 +1,226 @@
+/* LAYOUT PRINCIPAL */
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  z-index: 1100;
+  background-color: #f9f9f9;
+}
+
+.form-container {
+  margin-left: 70px;
+  margin-top: -50px;
+  padding-top: 95px;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 720px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+
+/* Contenu principal à droite de la sidebar */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  flex-grow: 1;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Zone principale blanche */
+.main {
+  border-radius: 12px;
+  padding: 30px;
+  background-color: #fff;
+  max-width: 900px;
+  margin: 20px auto 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+
+.title-main {
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: left;
+  color: black;
+  margin-bottom: 30px;
+}
+
+/* Notifications */
+.notif-card {
+  padding: 20px;
+  margin-bottom: 30px;
+  background: rgba(25, 230, 145, 0.15);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.notif-card h3,
+.notif-card p {
+  font-size: 1.2rem;
+  margin: 8px 0;
+}
+
+.notif-card small {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.notif-card button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid rgba(0, 0, 0, 1);
+  margin: 20px 0;
+  width: 100%;
+}
+
+/* ALERTES */
+.alerte {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  font-weight: 500;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.icon {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 1.4rem;
+  color: #0d4a8f;
+}
+
+/* --- RESPONSIVE --- */
+
+/* ≤ 1024px */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 200px;
+    padding: 16px;
+  }
+
+  .main {
+    padding: 20px;
+    max-width: 95%;
+  }
+
+  .title-main {
+    font-size: 1.8rem;
+  }
+}
+
+/* ≤ 768px */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+  }
+
+  .main-content {
+    margin-left: 80px;
+    padding: 14px;
+  }
+
+  .main {
+    padding: 16px;
+  }
+
+  .title-main {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .notif-card {
+    padding: 15px;
+  }
+
+  .notif-card h3,
+  .notif-card p {
+    font-size: 1rem;
+  }
+
+  .notif-card small {
+    font-size: 0.75rem;
+  }
+
+  .notif-card button {
+    font-size: 0.8rem;
+  }
+}
+
+/* ≤ 480px */
+@media (max-width: 480px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .main {
+    width: 100%;
+    padding: 12px;
+    border-radius: 0;
+    border: none;
+  }
+
+  .title-main {
+    font-size: 1.3rem;
+  }
+
+  .notif-card {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .notif-card h3,
+  .notif-card p {
+    font-size: 0.9rem;
+  }
+
+  .notif-card button {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,53 @@
+<form [formGroup]="medecinForm" (ngSubmit)="onSubmit()" class="modifier-form">
+
+  <!-- Photo section -->
+ <div class="d-flex align-items-center mb-4">
+  <img [src]="photoPreview || medecinForm.value.photo || 'assets/images/photo-placeholder.png'"
+       class="rounded-circle me-3"
+       width="80"
+       height="80"
+       alt="Photo médecin" />
+
+  <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden #fileInput>
+  <button type="button" class="btn btn-outline-secondary" (click)="fileInput.click()">Changer de photo</button>
+</div>
+
+
+  <h4>Information personnelles et professionnelles</h4>
+  <div class="grid-3">
+    <input class="form-control" formControlName="nom" placeholder="Nom" />
+    <input class="form-control" formControlName="prenom" placeholder="Prénom" />
+    <select class="form-select" formControlName="sexe">
+      <option>Homme</option>
+      <option>Femme</option>
+    </select>
+    <input class="form-control" type="date" formControlName="dateNaissance" />
+    <input class="form-control" type="number" placeholder="Année d’expérience" formControlName="anneeExperience" />
+    <select class="form-select" formControlName="specialite">
+       <option *ngFor="let s of specialites" [value]="s.nom">{{ s.nom }}</option>
+    </select>
+  </div>
+
+  <h4>Coordonnées</h4>
+  <div class="grid-3">
+    <input class="form-control" formControlName="email" type="email" placeholder="Email" />
+    <input class="form-control" formControlName="telephone" placeholder="Téléphone" />
+    <input class="form-control" formControlName="localisation" placeholder="Localisation" />
+  </div>
+
+  <h4>Parcours professionnel</h4>
+  <textarea class="form-control" rows="4" formControlName="description" placeholder="Description..."></textarea>
+
+  <div class="statut mt-4">
+    <label for="etat" class="me-2">Statut :</label>
+    <select class="form-select d-inline w-auto" id="etat" formControlName="etat">
+      <option value="Actif">✅ Activer</option>
+      <option value="Inactif">❌ Inactif</option>
+    </select>
+  </div>
+
+  <div class="form-actions">
+    <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">Annuler</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!medecinForm.valid">Enregistrer</button>
+  </div>
+</form>
