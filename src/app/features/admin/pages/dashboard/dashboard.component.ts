@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
 
 chargerStats(): void {
   this.adminService.getDashboardStats().subscribe(data => {
+    console.log('Statistiques du tableau de bord:', data);
     this.totalPatients = data.totalPatients;
     this.medecinsActifs = data.medecinsActifs;
     this.totalRendezVous = data.totalRendezVous;
