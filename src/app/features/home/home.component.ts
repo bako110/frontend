@@ -28,12 +28,12 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
   featuredMedecins: any[] = [];
   loadingMedecins: boolean = false;
+  visibleResultsCount = 2; // 👈 Affiche 2 résultats visibles
 
   private API_BASE_URL = 'https://sanordv.onrender.com';
   private searchTerms = new Subject<string>();
 
   constructor(private http: HttpClient, private router: Router) {}
-  
 
   ngOnInit(): void {
     this.loadFeaturedMedecins();
@@ -67,8 +67,6 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
     this.http.get<any>(`${this.API_BASE_URL}/api/admins/medecins`).subscribe({
       next: (response) => {
-        console.log('Réponse brute:', response);
-
         if (response && Array.isArray(response.medecins)) {
           this.featuredMedecins = response.medecins.map((medecin: any) => ({
             id: medecin._id,
@@ -78,13 +76,9 @@ export class HomeComponent implements AfterViewInit, OnInit {
             photo: medecin.photo || 'assets/images/default-doctor.jpg',
             localite: medecin.localite || 'Non précisée',
           })).slice(0, 9);
-
-          console.log('Médecins affichés :', this.featuredMedecins);
         } else {
           this.featuredMedecins = [];
-          console.warn('Structure inattendue dans la réponse');
         }
-
         this.loadingMedecins = false;
       },
       error: (err) => {
@@ -166,7 +160,6 @@ export class HomeComponent implements AfterViewInit, OnInit {
           this.isLoading = false;
           if (response.success) {
             this.medecins = response.data || [];
-            console.log('Les données du médecin:', this.medecins);
           } else {
             this.errorMessage =
               response.message || 'Erreur inconnue lors de la recherche';
@@ -194,11 +187,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
   }
 
   redirectToDetail(medecinId: string): void {
-  console.log('Redirection vers le médecin avec ID:', medecinId);
-  if (medecinId) {
-    this.router.navigate(['/medecinDetail', medecinId]);
+    if (medecinId) {
+      this.router.navigate(['/medecinDetail', medecinId]);
+    }
   }
-}
 
   private autocomplete(query: string) {
     const params = new HttpParams()
@@ -210,5 +202,13 @@ export class HomeComponent implements AfterViewInit, OnInit {
       `${this.API_BASE_URL}/api/recherche/recherche-avancee`,
       { params }
     );
+  }
+
+  get visibleMedecins() {
+    return this.medecins.slice(0, this.visibleResultsCount);
+  }
+
+  get scrollableMedecins() {
+    return this.medecins.slice(this.visibleResultsCount);
   }
 }
