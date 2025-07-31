@@ -28,9 +28,9 @@ totalRendezVous: number | null = null;
     this.adminService.getDashboardStats().subscribe({
       next: (data) => {
         console.log('Statistiques du tableau de bord:', data);
-        this.totalPatients = data.totalPatients || 0;
-        this.medecinsActifs = data.medecinsActifs || 0;
-        this.totalRendezVous = data.totalRendezVous || 0;
+        this.totalPatients = data.totalPatients ;
+        this.medecinsActifs = data.medecinsActifs ;
+        this.totalRendezVous = data.totalRendezVous;
         this.isLoading = false;
         this.cd.detectChanges();
       },
