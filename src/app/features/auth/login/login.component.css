@@ -25,6 +25,8 @@ body {
 }
 
 .login-form {
+  position: relative;
+  top: 30px;
   width: 100%;
 }
 
