@@ -21,12 +21,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              {
-                "glob": "_redirects",
-                "input": "src",
-                "output": "/"
-              }
-        ],
+              "src/_redirects"
+            ],
             "styles": [
               "node_modules/angular-calendar/css/angular-calendar.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
