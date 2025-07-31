@@ -68,7 +68,7 @@ export class MedecinService {
 }
 
  creerAgenda(date: string, medecinId: string) {
-    return this.http.post('http://localhost:3000/api/agenda/creer', { date, medecinId });
+    return this.http.post('https://sanordv.onrender.com/api/agenda/creer', { date, medecinId });
   }
 
 

@@ -54,8 +54,4 @@ export class MedecinService {
   return this.http.post('https://sanordv.onrender.com/api/agenda/afficherAgenda', {selectedDate,medecinId });
 }
 
-
-
-
-
 }
