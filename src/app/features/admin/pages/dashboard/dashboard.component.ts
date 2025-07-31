@@ -8,14 +8,15 @@ import { AdminService } from '../../admin.service';
 })
 export class DashboardComponent implements OnInit {
 
-  totalPatients: number = 0;
-  medecinsActifs: number = 0;
-  totalRendezVous: number = 0;
-  isLoading: boolean = true; // Ajout du flag de chargement
+totalPatients: number | null = null;
+medecinsActifs: number | null = null;
+totalRendezVous: number | null = null;
+
+  isLoading: boolean = true;
 
   constructor(
     private adminService: AdminService,
-    private cd: ChangeDetectorRef  // Injection de ChangeDetectorRef
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -23,20 +24,19 @@ export class DashboardComponent implements OnInit {
   }
 
   chargerStats(): void {
-    this.isLoading = true; // Début du chargement
+    this.isLoading = true;
     this.adminService.getDashboardStats().subscribe({
       next: (data) => {
         console.log('Statistiques du tableau de bord:', data);
-        this.totalPatients = data.totalPatients;
-        this.medecinsActifs = data.medecinsActifs;
-        this.totalRendezVous = data.totalRendezVous;
-
-        this.isLoading = false; // Fin du chargement
-        this.cd.detectChanges(); // Mise à jour du template
+        this.totalPatients = data.totalPatients || 0;
+        this.medecinsActifs = data.medecinsActifs || 0;
+        this.totalRendezVous = data.totalRendezVous || 0;
+        this.isLoading = false;
+        this.cd.detectChanges();
       },
       error: (error) => {
         console.error('Erreur chargement stats:', error);
-        this.isLoading = false; // Fin du chargement même en cas d’erreur
+        this.isLoading = false;
         this.cd.detectChanges();
       }
     });
