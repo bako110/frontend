@@ -151,6 +151,19 @@ button {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper .bi {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #9e9e9e;
+}
+
 
 button:hover {
   background-color: #00a3e0;
