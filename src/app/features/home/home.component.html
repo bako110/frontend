@@ -112,8 +112,7 @@
               Voir plus
             </button>
             <img
-              *ngIf="medecin.photo"
-              [src]="'https://sanordv.onrender.com/' + medecin.photo"
+              [src]=" medecin.photo"
               alt="Photo de {{ medecin.nom }}"
               style="
                 width: 80px;
