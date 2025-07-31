@@ -46,7 +46,7 @@ export class RechercheMedecinService {
       .set('fuzzyEnabled', 'true')
       .set('phoneticEnabled', 'true');
 
-    this.http.get('http://localhost:3000/api/recherche/recherche-avancee', { params }).subscribe({
+    this.http.get('https://sanordv.onrender.com/api/recherche/recherche-avancee', { params }).subscribe({
       next: (data: any) => {
         console.log('Données reçues du backend:', data);
 

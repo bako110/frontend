@@ -10,8 +10,8 @@ import { environment } from '../../../../environment/environments';
 })
 export class CreneauService {
 
-  private apiUrl = 'http://localhost:3000/api/creneaux';
-  private apibaseUrl = 'http://localhost:3000/api/medecin/:id/agenda'
+  private apiUrl = 'https://sanordv.onrender.com/api/creneaux';
+  private apibaseUrl = 'https://sanordv.onrender.com/api/medecin/:id/agenda'
 
   constructor(private http: HttpClient) {}
 

@@ -35,7 +35,7 @@ export class PatientService {
 
   // medecin.service.ts
 obtenirAgenda(date: string, medecinId: string): Observable<any> {
-  return this.http.post(`http://localhost:3000/api/agenda/afficherAgenda`, { date, medecinId });
+  return this.http.post(`https://sanordv.onrender.com/api/agenda/afficherAgenda`, { date, medecinId });
 }
 
 }
