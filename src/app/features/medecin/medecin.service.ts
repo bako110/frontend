@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MedecinService {
-  private baseUrl = 'http://localhost:3000/api';
+  private baseUrl = 'https://sanordv.onrender.com';
   private apiUrl = `${this.baseUrl}/medecins`;
   private rdvUrl = `${this.baseUrl}/rendezvous`;
   selectedSlots: any;
@@ -43,15 +43,15 @@ export class MedecinService {
   }
 
   creerAgenda(date: string, medecinId: string) {
-    return this.http.post('http://localhost:3000/api/agenda/creer', { date, medecinId });
+    return this.http.post('https://sanordv.onrender.com/api/agenda/creer', { date, medecinId });
   }
 
   modifierCreneau(payload: any) {
-    return this.http.put('http://localhost:3000/api/creneaux/update', payload);
+    return this.http.put('https://sanordv.onrender.com/api/creneaux/update', payload);
   }
 
   obtenirAgenda(selectedDate : Date, medecinId: string) {
-  return this.http.post('http://localhost:3000/api/agenda/afficherAgenda', {selectedDate,medecinId });
+  return this.http.post('https://sanordv.onrender.com/api/agenda/afficherAgenda', {selectedDate,medecinId });
 }
 
 
