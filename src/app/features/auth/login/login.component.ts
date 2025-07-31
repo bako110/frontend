@@ -24,7 +24,7 @@ export class LoginComponent {
     private route: ActivatedRoute
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      UserID: ['', [Validators.required, Validators.email]],
       motDePasse: ['', Validators.required]
     });
   }
