@@ -63,7 +63,7 @@ reserverCreneau(idCreneau: string, time: string, idPatient: string) {
 
 
  afficherAgenda(data: any): Observable<any> {
-  return this.http.post('http://localhost:3000/api/agenda/afficherAgenda', data);
+  return this.http.post('https://sanordv.onrender.com/api/agenda/afficherAgenda', data);
 }
 
 
