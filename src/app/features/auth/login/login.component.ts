@@ -33,6 +33,7 @@ export class LoginComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      console.log('Formulaire de connexion soumis:', this.loginForm.value);
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
           const role = response?.user?.role;
